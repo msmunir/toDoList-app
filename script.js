@@ -11,7 +11,7 @@
 //  GET - Show items in a list from db
  
  const getTodos = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=4')
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=7')
     const data = await res.json()
   
     // console.log(data)
@@ -30,7 +30,7 @@
         todoList.appendChild(todoElemnet)
     })
   }
-                            //todoData.id
+                  
   const createTodoElement = (todoData) => {
     const item = document.createElement('div')
     item.classList.add('item')
@@ -46,7 +46,7 @@
         buttonDone.innerText = 'done'
         // buttonDone.id = 'done'
         buttonDone.className = 'btn btn-outline-secondary done'
-        
+
 
         const buttonDelete = document.createElement('button')
         buttonDelete.innerText = 'delete'
@@ -67,8 +67,6 @@
               console.log(res)
               if(res.ok){
                       item.remove()
-                      // e.target.parentElement.parentElement.remove()
-                      // const index = todos.findIndex(todo => todo.id == e.target.id)
                       const index = todos.findIndex(todo => todo.id == todoData.id)
                       todos.splice(index, 1)
                   // }
@@ -127,38 +125,6 @@
     return item
   }
 
-
-
-
-// DELETE - Remove item from  list  
-
-// const removeTodo = (e) => {
-//     e.preventDefault();
-    
-//     const item = document.querySelector('.item')
-
-
-//     //  fetch(BASE_URL + todoData.id, {
-//      fetch(BASE_URL + item.id, {
-//       method: 'DELETE'
-//     })
-//       .then(res => {
-//         console.log(res)
-//         if(res.ok){
-//             // if(e.target.innerText === 'delete'){
-//             if(e.target.classList.contains('delete')){
-//                 item.remove()
-//                 // e.target.parentElement.parentElement.remove()
-//                 // const index = todos.findIndex(todo => todo.id == e.target.id)
-//                 const index = todos.findIndex(todo => todo.id == item.id)
-//                 todos.splice(index, 1)
-//             }
-//             console.log(todos)
-//         }
-//       })
-     
-//   }
-
 //   POST - Add item to list
  
   const addItem = (e) => {
@@ -198,28 +164,6 @@
         form.reset();  
 }
 
-
-// PATCH - Update items in db
-
-
-// const updateTodo = (e) => {
-//   e.preventDefault()
-
-//   fetch('https://jsonplaceholder.typicode.com/posts/1', {
-//   method: 'PATCH',
-//   body: JSON.stringify({
-//     completed: !todos.completed
-//   }),
-//   headers: {
-//     'Content-type': 'application/json; charset=UTF-8',
-//   },
-// })
-//   .then((response) => response.json())
-//   // .then((json) => console.log(json));
-
-// }
-
-// todoList.addEventListener('click', updateTodo)
 form.addEventListener('submit', addItem)
 
 
