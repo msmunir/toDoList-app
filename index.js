@@ -10,7 +10,7 @@
  
  
  const getTodos = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
     const data = await res.json()
   
     // console.log(data)
@@ -50,19 +50,13 @@
   
     const p = document.createElement('p')
     p.innerText = todo.title
-  
-    const button = document.createElement('button')
-    button.innerText = 'delete'
-    button.className = 'btn btn-outline-secondary'
-    // button.id = todo.id
-  
-    // button.addEventListener('click', () => {
-    //   button.parentElement.remove()
-    // })
-  
-  
+
+    const buttonDelete = document.createElement('button')
+    buttonDelete.innerText = 'delete'
+    buttonDelete.className = 'btn btn-outline-secondary'
+
     item.appendChild(p)
-    item.appendChild(button)
+    item.appendChild(buttonDelete)
   
     return item
   }
@@ -73,6 +67,7 @@ const removeTodo = (e) => {
     e.preventDefault();
   
      fetch(BASE_URL + e.target.parentElement.id, {
+    //  fetch('https://jsonplaceholder.typicode.com/posts/1', {
       method: 'DELETE'
     })
       .then(res => {
@@ -81,6 +76,7 @@ const removeTodo = (e) => {
             // e.target.remove()
             if(e.target.innerText === 'delete'){
                 e.target.parentElement.remove()
+                // e.target.parentElement.parentElement.remove()
                 const index = todos.findIndex(todo => todo.id == e.target.id)
                 todos.splice(index, 1)
             }
